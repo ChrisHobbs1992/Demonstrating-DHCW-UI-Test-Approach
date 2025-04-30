@@ -31,7 +31,6 @@ namespace SpecFlowProjectTest.StepDefinitions
         {
             var url = $"{PageUrl.HOME_PAGE}";
             _dhcwHomePage = _browser.NavigateTo<DHCW_HomePage>(url);
-            _browser.WaitForLoader();
         }
 
         [When(@"I click the '(news|home)' upper ribbon tab")]

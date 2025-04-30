@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 
-namespace NhsWales.Ui.Integration.Tests
+namespace SpecFlowProjectTest.Tests
 {
     public static class ConfigData
     {
@@ -20,12 +20,5 @@ namespace NhsWales.Ui.Integration.Tests
         public required string Browser { get; init; }
         public required string BaseUrl { get; init; }
         public required bool Headless { get; init; }
-        public required User User { get; init; }
-    }
-
-    public class User
-    {
-        public required string Email { get; init; }
-        public required string Password { get; init; }
     }
 }

@@ -30,21 +30,18 @@ namespace SpecFlowProjectTest.Support
         public void Reload()
         {
             _driver.Navigate().Refresh();
-            WaitForLoader();
         }
         public T NavigateTo<T>(string url)
         {
             var baseUrl = _baseUrl;
             _driver.Navigate().GoToUrl(baseUrl + url);
             IJavaScriptExecutor js = (IJavaScriptExecutor)_driver;
-            js.ExecuteScript("document.documentElement.style.zoom='80%'");
-            WaitForLoader(90);
+            //js.ExecuteScript("document.documentElement.style.zoom='80%'");
             return (T)Activator.CreateInstance(typeof(T), this)!;
         }
 
         public T NavigateTo<T>()
         {
-            WaitForLoader(90);
             return (T)Activator.CreateInstance(typeof(T), this)!;
         }
         public IWebDriver DriverInstance()
@@ -64,16 +61,6 @@ namespace SpecFlowProjectTest.Support
         public Interceptor InterceptorInstance()
         {
             return _interceptor;
-        }
-        public void WaitForLoader(int timeoutInSeconds = 90)
-        {
-            var spinner = By.ClassName("spinner_circle");
-            if (_driver.FindElements(spinner).Count > 0)
-            {
-                var wait = DriverWaitInstance();
-                wait.Timeout = TimeSpan.FromSeconds(timeoutInSeconds);
-                wait.Until(ExpectedConditions.InvisibilityOfElementLocated(spinner));
-            }
         }
 
         public void ClickAway()

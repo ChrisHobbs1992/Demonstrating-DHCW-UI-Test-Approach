@@ -38,7 +38,7 @@ namespace SpecFlowProjectTest.Pages.DHCW
 
         internal void DHCWMottoIsPresent()
         {
-            IsElementDisplayed(DHCWMottoHeader).Should().BeTrue();
+            WaitForElementToDisplay(DHCWMottoHeader).Should().BeTrue();
         }
 
         #endregion

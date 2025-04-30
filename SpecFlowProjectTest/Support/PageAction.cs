@@ -32,7 +32,6 @@ namespace SpecFlowProjectTest.Support
         /// <param name="timeout">Delay time in seconds before attempting to perform and click</param>
         public void ClickOnElement(By locator, bool force = false, int retryCount = 3, int timeout = 0)
         {
-            _browser.WaitForLoader();
             _wait.Until(ExpectedConditions.ElementToBeClickable(locator));
             Thread.Sleep(timeout);
 
@@ -79,7 +78,6 @@ namespace SpecFlowProjectTest.Support
 
             });
             res.Result.Should().BeTrue("Failed to click on the element!");
-            _browser.WaitForLoader();
         }
 
         // <summary>
@@ -91,7 +89,6 @@ namespace SpecFlowProjectTest.Support
         /// <param name="timeout">Delay time in seconds before attempting to perform and click</param>
         public void ClickOnElement(IWebElement element, bool force = false, int retryCount = 3, int timeout = 0)
         {
-            _browser.WaitForLoader();
             Thread.Sleep(timeout);
 
             var res = RetryPolicies.RetryBooleanOrDriverException(false, retryCount).ExecuteAndCapture(() =>
@@ -123,7 +120,6 @@ namespace SpecFlowProjectTest.Support
                 return result;
             });
             res.Result.Should().BeTrue("Failed to click on the element!");
-            _browser.WaitForLoader();
         }
 
         public void MouseClick(By locator)
@@ -179,7 +175,6 @@ namespace SpecFlowProjectTest.Support
         /// <param name="expectedLocator">Element to expect once the action is completed</param>
         public void RightClickOnElement(By locator, int retryCount = 30, By? expectedLocator = null)
         {
-            _browser.WaitForLoader();
             RetryPolicies.RetryBooleanOrDriverException(false, retryCount).Execute(() =>
             {
                 var result = false;
@@ -231,7 +226,6 @@ namespace SpecFlowProjectTest.Support
                     actions.ContextClick(element).Perform();
                 });
             }
-            _browser.WaitForLoader();
         }
 
         /// <summary>
@@ -280,7 +274,6 @@ namespace SpecFlowProjectTest.Support
         /// <returns></returns>
         public string GetText(By locator, int timeout = 15)
         {
-            _browser.WaitForLoader();
             WaitForElementToExist(locator, timeout).Should().BeTrue();
             ScrollIntoView(locator);
             return _driver.FindElement(locator).Text;
@@ -296,7 +289,6 @@ namespace SpecFlowProjectTest.Support
         /// <returns></returns>
         public string GetText(IWebElement element, int timeout = 15)
         {
-            _browser.WaitForLoader();
             FluentWait(timeout).Until((d) => element.Displayed);
             return element.Text;
         }
@@ -557,7 +549,6 @@ namespace SpecFlowProjectTest.Support
         /// <returns></returns>
         public List<IWebElement> GetElements(By locator, int timeOut = 15)
         {
-            _browser.WaitForLoader();
             return FluentWait(timeOut).Until(d => d.FindElements(locator).ToList());
         }
 
@@ -574,13 +565,11 @@ namespace SpecFlowProjectTest.Support
         /// <returns></returns>
         public bool WaitForElementToDisplay(By locator, int timeout = 30)
         {
-            _browser.WaitForLoader();
             return FluentWait(timeout).Until(d => d.FindElement(locator).Displayed);
         }
 
         public bool WaitForElementToDisplayWithRetry(By locator, int timeout = 5, int retryCount = 3)
         {
-            _browser.WaitForLoader();
             int count = 1;
             bool displayed = false;
             while (count <= retryCount)
@@ -600,7 +589,6 @@ namespace SpecFlowProjectTest.Support
 
         public bool WaitForDropdownToPopulate(By locator, int timeout = 30)
         {
-            _browser.WaitForLoader();
             return FluentWait(timeout).Until(d =>
             {
                 var dropdown = d.FindElement(locator);
@@ -836,13 +824,11 @@ namespace SpecFlowProjectTest.Support
         /// <returns></returns>
         public bool WaitForElementToExist(By locator, int timeout = 30)
         {
-            _browser.WaitForLoader();
             return FluentWait(timeout).Until(d => d.FindElements(locator).Count > 0);
         }
 
         public IWebElement WaitForElementToBeClickable(By locator, int timeout = 30)
         {
-            _browser.WaitForLoader();
             return FluentWait(timeout).Until(d => _wait.Until(ExpectedConditions.ElementToBeClickable(locator)));
         }
 

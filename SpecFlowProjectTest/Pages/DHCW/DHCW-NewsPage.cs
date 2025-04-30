@@ -23,7 +23,7 @@ namespace SpecFlowProjectTest.Pages.DHCW
         }
         #region Locators
 
-        By NewsPageHeading = By.XPath("//h2[contains(text(), 'News and stories')]");
+        By NewsPageHeading = By.XPath("//h1[contains(text(), 'News and stories')]");
 
         #endregion
 
@@ -37,7 +37,7 @@ namespace SpecFlowProjectTest.Pages.DHCW
 
         internal void NewsPageHeadingIsPresent()
         {
-            IsElementDisplayed(NewsPageHeading).Should().BeTrue();
+            WaitForElementToDisplay(NewsPageHeading).Should().BeTrue();
         }
 
         #endregion

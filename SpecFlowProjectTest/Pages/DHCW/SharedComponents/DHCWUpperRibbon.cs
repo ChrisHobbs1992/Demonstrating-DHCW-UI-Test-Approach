@@ -31,9 +31,14 @@ namespace SpecFlowProjectTest.Pages.DHCW.Shared_Components
 
         #region Actions
 
-        public void ClickHomeButton(IWebDriver driver)
+        public void ClickHomeButton()
         {
             MouseClick(HomeButton);
+        }
+
+        public void ClickNewsButton()
+        {
+            MouseClick(NewsButton);
         }
 
         #endregion

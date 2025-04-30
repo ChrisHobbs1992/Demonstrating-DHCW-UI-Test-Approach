@@ -26,6 +26,7 @@ namespace SpecFlowProjectTest.Pages.DHCW
 
         By DHCWMottoHeader = By.XPath("//h2[contains(text(), 'Making digital a force for good in health and care')]");
 
+
         #endregion
 
         #region Actions
